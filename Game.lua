@@ -174,8 +174,7 @@ do
       insert(self.all_piles, self.stock_pile)
       self.talon_pile = TalonPile()
       self.talon_pile:set_position(150, 40)
-      insert(self.all_piles, self.talon_pile)
-      return self.tableau_piles[2]:clear()
+      return insert(self.all_piles, self.talon_pile)
     end,
     __base = _base_0,
     __name = "Game"
