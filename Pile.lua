@@ -94,7 +94,7 @@ do
       for _index_0 = 1, #_list_0 do
         local card = _list_0[_index_0]
         local y_pos = self.y + (PILE_Y_OFFSET * (index - 1))
-        card:setPosition(self.x, y_pos)
+        card:set_position(self.x, y_pos)
         card:draw()
         index = index + 1
       end
@@ -179,7 +179,7 @@ do
   local _parent_0 = BasePile
   local _base_0 = {
     add_card = function(self, card)
-      card:setPosition(self.x, self.y)
+      card:set_position(self.x, self.y)
       return _class_0.__parent.__base.add_card(self, card)
     end,
     split_pile = function(self)
@@ -322,7 +322,7 @@ do
   local _parent_0 = BasePile
   local _base_0 = {
     add_card = function(self, card)
-      card:setPosition(self.x, self.y)
+      card:set_position(self.x, self.y)
       return _class_0.__parent.__base.add_card(self, card)
     end,
     split_pile = function(self)

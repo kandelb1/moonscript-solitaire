@@ -10,7 +10,7 @@ export class Mouse
     x = love.mouse.getX!
     y = love.mouse.getY!
     if @selected
-      @selected\setPosition(x, y)
+      @selected\set_position x, y
   
   draw: =>
     @selected\draw! if @selected

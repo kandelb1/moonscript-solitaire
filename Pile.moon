@@ -36,7 +36,7 @@ export class TableauPile extends BasePile
     index = 1
     for card in *@cards
       y_pos = @y + (PILE_Y_OFFSET * (index - 1))
-      card\setPosition(@x, y_pos)
+      card\set_position @x, y_pos
       card\draw!
       index += 1
     total_height = (PILE_Y_OFFSET * (#@cards - 1)) + CARD_HEIGHT
@@ -74,7 +74,7 @@ export class FoundationPile extends BasePile
     @empty_image = get_ace_image @type
 
   add_card: (card) =>
-    card\setPosition(@x, @y)
+    card\set_position @x, @y
     super card
 
   split_pile: =>
@@ -135,7 +135,7 @@ export class TalonPile extends BasePile
     super ...
 
   add_card: (card) =>
-    card\setPosition @x, @y
+    card\set_position @x, @y
     super card
 
   split_pile: =>

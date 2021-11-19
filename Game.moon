@@ -18,7 +18,7 @@ export class Game
     x = 50
     for i = 1, 7
       pile = TableauPile!
-      pile\setPosition(x, 150)
+      pile\set_position x, 150
       insert @all_piles, pile
       insert @tableau_piles, pile
       x += 100    
@@ -27,7 +27,7 @@ export class Game
     x = 350
     for i = 1, 4
       pile = FoundationPile suits[i]
-      pile\setPosition x, 40
+      pile\set_position x, 40
       insert @all_piles, pile
       insert @foundation_piles, pile
       x += 100
@@ -35,11 +35,11 @@ export class Game
     @reset_game! -- set up the game so we can give the stock pile what is left of the deck
 
     @stock_pile = StockPile @deck.cards
-    @stock_pile\setPosition 50, 40
+    @stock_pile\set_position 50, 40
     insert @all_piles, @stock_pile
 
     @talon_pile = TalonPile!
-    @talon_pile\setPosition 150, 40
+    @talon_pile\set_position 150, 40
     insert @all_piles, @talon_pile
 
   reset_game: =>
@@ -86,7 +86,7 @@ export class Game
           if foundation\is_valid_move(dummy_pile)
             card = pile\pop!
             animated_card = Card(card.value, card.suit) -- create a copy
-            animated_card\setPosition card.x, card.y -- set its position
+            animated_card\set_position card.x, card.y -- set its position
             foundation\combine_pile(dummy_pile) -- move the original card over to the foundation
             -- set up the animation
             target = {x: foundation.x, y: foundation.y}

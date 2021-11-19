@@ -3,7 +3,7 @@ export class Entity
     @x = x
     @y = y
   
-  setPosition: (x, y) =>
+  set_position: (x, y) =>
     @x = x
     @y = y
 

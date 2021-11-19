@@ -1,7 +1,7 @@
 do
   local _class_0
   local _base_0 = {
-    setPosition = function(self, x, y)
+    set_position = function(self, x, y)
       self.x = x
       self.y = y
     end

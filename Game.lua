@@ -76,7 +76,7 @@ do
               if foundation:is_valid_move(dummy_pile) then
                 local card = pile:pop()
                 local animated_card = Card(card.value, card.suit)
-                animated_card:setPosition(card.x, card.y)
+                animated_card:set_position(card.x, card.y)
                 foundation:combine_pile(dummy_pile)
                 local target = {
                   x = foundation.x,
@@ -149,7 +149,7 @@ do
       local x = 50
       for i = 1, 7 do
         local pile = TableauPile()
-        pile:setPosition(x, 150)
+        pile:set_position(x, 150)
         insert(self.all_piles, pile)
         insert(self.tableau_piles, pile)
         x = x + 100
@@ -163,17 +163,17 @@ do
       x = 350
       for i = 1, 4 do
         local pile = FoundationPile(suits[i])
-        pile:setPosition(x, 40)
+        pile:set_position(x, 40)
         insert(self.all_piles, pile)
         insert(self.foundation_piles, pile)
         x = x + 100
       end
       self:reset_game()
       self.stock_pile = StockPile(self.deck.cards)
-      self.stock_pile:setPosition(50, 40)
+      self.stock_pile:set_position(50, 40)
       insert(self.all_piles, self.stock_pile)
       self.talon_pile = TalonPile()
-      self.talon_pile:setPosition(150, 40)
+      self.talon_pile:set_position(150, 40)
       return insert(self.all_piles, self.talon_pile)
     end,
     __base = _base_0,

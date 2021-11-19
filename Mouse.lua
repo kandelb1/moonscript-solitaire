@@ -11,7 +11,7 @@ do
       local x = love.mouse.getX()
       local y = love.mouse.getY()
       if self.selected then
-        return self.selected:setPosition(x, y)
+        return self.selected:set_position(x, y)
       end
     end,
     draw = function(self)
