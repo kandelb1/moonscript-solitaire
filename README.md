@@ -1,5 +1,5 @@
 # moonscript-solitaire
-Solitaire, made with Moonscript and LÖVE
+Solitaire, made with [Moonscript](https://moonscript.org/) and [LÖVE](https://love2d.org/).
 
 ## Information
 My version of solitaire follows traditional solitaire rules, https://playingcarddecks.com/blogs/how-to-play/solitaire-game-rules
