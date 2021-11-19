@@ -36,24 +36,22 @@ export class Mouse
         @parent = nil
         @selected = nil
       elseif @did_click_pile(x, y, true)
-        if @selected -- put down the pile
-          @selected = nil
-        else -- try to pick up the pile
-          pile = @get_pile_from_click(x, y, true)
-          if pile.__class == TableauPile
-            unless #pile.cards == 0
-              @parent = pile
-              @selected = @get_pile_from_click(x, y)
-          elseif pile.__class == FoundationPile
-            unless #pile.cards == 0
-              @parent = pile
-              @selected = @get_pile_from_click(x, y)
-          elseif pile.__class == TalonPile
-            unless #pile.cards == 0
-              @parent = pile
-              @selected = pile\split_pile!
-          elseif pile.__class == StockPile
-            @game\activate_stock_pile!
+        pile = @get_pile_from_click(x, y, true)
+        print "clicked on a pile"
+        if pile.__class == TableauPile
+          unless #pile.cards == 0
+            @parent = pile
+            @selected = @get_pile_from_click(x, y)
+        elseif pile.__class == FoundationPile
+          unless #pile.cards == 0
+            @parent = pile
+            @selected = @get_pile_from_click(x, y)
+        elseif pile.__class == TalonPile
+          unless #pile.cards == 0
+            @parent = pile
+            @selected = pile\split_pile!
+        elseif pile.__class == StockPile
+          @game\activate_stock_pile!
   
   -- do math to determine if the x y coordinates fall within any of the piles
   did_click_pile: (x, y, check_for_flipped = false) =>
@@ -88,6 +86,8 @@ export class Mouse
         -- we know we clicked on a pile of cards. now lets find out exactly which card we clicked on
         if get_whole_pile
           return pile
+        if #pile.cards == 0
+          return TableauPile!
         for card_index = 1, #pile.cards
           card = pile.cards[card_index]
           if card_index == #pile.cards

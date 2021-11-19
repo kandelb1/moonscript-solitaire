@@ -42,6 +42,8 @@ export class Game
     @talon_pile\set_position 150, 40
     insert @all_piles, @talon_pile
 
+    @tableau_piles[2]\clear!
+
   reset_game: =>
     @deck\reset_deck!
 

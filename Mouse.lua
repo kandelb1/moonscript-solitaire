@@ -39,28 +39,25 @@ do
           self.parent = nil
           self.selected = nil
         elseif self:did_click_pile(x, y, true) then
-          if self.selected then
-            self.selected = nil
-          else
-            local pile = self:get_pile_from_click(x, y, true)
-            if pile.__class == TableauPile then
-              if not (#pile.cards == 0) then
-                self.parent = pile
-                self.selected = self:get_pile_from_click(x, y)
-              end
-            elseif pile.__class == FoundationPile then
-              if not (#pile.cards == 0) then
-                self.parent = pile
-                self.selected = self:get_pile_from_click(x, y)
-              end
-            elseif pile.__class == TalonPile then
-              if not (#pile.cards == 0) then
-                self.parent = pile
-                self.selected = pile:split_pile()
-              end
-            elseif pile.__class == StockPile then
-              return self.game:activate_stock_pile()
+          local pile = self:get_pile_from_click(x, y, true)
+          print("clicked on a pile")
+          if pile.__class == TableauPile then
+            if not (#pile.cards == 0) then
+              self.parent = pile
+              self.selected = self:get_pile_from_click(x, y)
             end
+          elseif pile.__class == FoundationPile then
+            if not (#pile.cards == 0) then
+              self.parent = pile
+              self.selected = self:get_pile_from_click(x, y)
+            end
+          elseif pile.__class == TalonPile then
+            if not (#pile.cards == 0) then
+              self.parent = pile
+              self.selected = pile:split_pile()
+            end
+          elseif pile.__class == StockPile then
+            return self.game:activate_stock_pile()
           end
         end
       end
@@ -111,6 +108,9 @@ do
         if x >= pile.x and x <= pile.x + CARD_WIDTH and y >= pile.y and y <= total_height then
           if get_whole_pile then
             return pile
+          end
+          if #pile.cards == 0 then
+            return TableauPile()
           end
           for card_index = 1, #pile.cards do
             local card = pile.cards[card_index]
