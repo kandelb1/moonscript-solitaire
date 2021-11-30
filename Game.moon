@@ -2,6 +2,7 @@ import TableauPile, FoundationPile, TalonPile, StockPile from require "Pile"
 import Card, CardSuit from require "Card"
 import Deck from require "Deck"
 import Animation from require "Animation"
+import END_SOUND from require "Util"
 import insert from table
 tween = require "libs/tween"
 
@@ -60,18 +61,22 @@ export class Game
   activate_stock_pile: =>
     -- take one card from the stock pile and put it on the talon pile
     -- if it's empty, we have to reshuffle.
+    -- return 1 if we reshuffle, 0 if not.
     if #@stock_pile.cards == 0
       for i = #@talon_pile.cards, 1, -1
         @stock_pile\add_card @talon_pile.cards[i]
       @talon_pile\clear!
+      return 1
     else
       card = @stock_pile\pop!
       @talon_pile\add_card card
+      return 0
   
   -- the game is not over if one of the foundation piles is not complete
   is_game_over: =>
     for pile in *@foundation_piles
       return false if not pile\is_complete!
+    END_SOUND\play!
     return true
   
   -- this function is called when there are no cards left in the stock and talon piles

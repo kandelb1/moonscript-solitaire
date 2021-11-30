@@ -12,6 +12,8 @@ local Deck
 Deck = require("Deck").Deck
 local Animation
 Animation = require("Animation").Animation
+local END_SOUND
+END_SOUND = require("Util").END_SOUND
 local insert
 insert = table.insert
 local tween = require("libs/tween")
@@ -41,10 +43,12 @@ do
         for i = #self.talon_pile.cards, 1, -1 do
           self.stock_pile:add_card(self.talon_pile.cards[i])
         end
-        return self.talon_pile:clear()
+        self.talon_pile:clear()
+        return 1
       else
         local card = self.stock_pile:pop()
-        return self.talon_pile:add_card(card)
+        self.talon_pile:add_card(card)
+        return 0
       end
     end,
     is_game_over = function(self)
@@ -55,6 +59,7 @@ do
           return false
         end
       end
+      END_SOUND:play()
       return true
     end,
     finish_game = function(self)

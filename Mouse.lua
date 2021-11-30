@@ -3,7 +3,11 @@ do
   local _obj_0 = require("Pile")
   FoundationPile, StockPile, TableauPile, TalonPile = _obj_0.FoundationPile, _obj_0.StockPile, _obj_0.TableauPile, _obj_0.TalonPile
 end
-require("Util")
+local SHUFFLE_SOUND, CARD_SOUND
+do
+  local _obj_0 = require("Util")
+  SHUFFLE_SOUND, CARD_SOUND = _obj_0.SHUFFLE_SOUND, _obj_0.CARD_SOUND
+end
 do
   local _class_0
   local _base_0 = {
@@ -29,6 +33,7 @@ do
               if self.parent.__class == TableauPile and #self.parent.cards ~= 0 then
                 self.parent:get_last_card().flipped = false
               end
+              CARD_SOUND:clone():play()
               self.game:update_state()
             else
               self.parent:combine_pile(self.selected)
@@ -57,7 +62,12 @@ do
               self.selected = pile:split_pile()
             end
           elseif pile.__class == StockPile then
-            return self.game:activate_stock_pile()
+            local _exp_0 = self.game:activate_stock_pile()
+            if 0 == _exp_0 then
+              return CARD_SOUND:clone():play()
+            elseif 1 == _exp_0 then
+              return SHUFFLE_SOUND:play()
+            end
           end
         end
       end

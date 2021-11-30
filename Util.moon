@@ -2,6 +2,10 @@
 -- import CardSuit from require "Card"
 image = love.graphics.newImage("img/Hearts 1.png") -- all the card images are the same, so we can use any one of them tp get things like width/height
 
+export SHUFFLE_SOUND = love.audio.newSource("sounds/cardFan1.wav", "static")
+export CARD_SOUND = love.audio.newSource("sounds/cardPlace2.wav", "static")
+export END_SOUND = love.audio.newSource("sounds/clapping.ogg", "static")
+
 export CARD_HEIGHT = image\getHeight!
 export CARD_WIDTH = image\getWidth!
 export PILE_Y_OFFSET = CARD_HEIGHT / 4
@@ -73,4 +77,4 @@ export cardval_to_number = (value) ->
     when "King"
       13
 
-{ :CARD_HEIGHT, :CARD_WIDTH, :PILE_Y_OFFSET, :IMAGE_CARD_BACK, :are_opposite_colors, :is_one_more, :get_ace_image, :print_centered_text, :cardval_to_number }
+{ :CARD_HEIGHT, :CARD_WIDTH, :PILE_Y_OFFSET, :IMAGE_CARD_BACK, :are_opposite_colors, :is_one_more, :get_ace_image, :print_centered_text, :cardval_to_number, :CARD_SOUND, :SHUFFLE_SOUND, :END_SOUND }

@@ -1,5 +1,5 @@
 import FoundationPile, StockPile, TableauPile, TalonPile from require "Pile"
-require "Util"
+import SHUFFLE_SOUND, CARD_SOUND from require "Util"
 
 export class Mouse
   new: (@game) =>
@@ -28,6 +28,7 @@ export class Mouse
             clicked\combine_pile(@selected)
             if @parent.__class == TableauPile and #@parent.cards != 0
               @parent\get_last_card!.flipped = false
+            CARD_SOUND\clone!\play!
             @game\update_state!
           else
             @parent\combine_pile @selected
@@ -51,7 +52,11 @@ export class Mouse
             @parent = pile
             @selected = pile\split_pile!
         elseif pile.__class == StockPile
-          @game\activate_stock_pile!
+          switch @game\activate_stock_pile!
+            when 0
+              CARD_SOUND\clone!\play!
+            when 1
+              SHUFFLE_SOUND\play!
   
   -- do math to determine if the x y coordinates fall within any of the piles
   did_click_pile: (x, y, check_for_flipped = false) =>

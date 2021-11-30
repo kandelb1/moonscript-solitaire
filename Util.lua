@@ -1,4 +1,7 @@
 local image = love.graphics.newImage("img/Hearts 1.png")
+SHUFFLE_SOUND = love.audio.newSource("sounds/cardFan1.wav", "static")
+CARD_SOUND = love.audio.newSource("sounds/cardPlace2.wav", "static")
+END_SOUND = love.audio.newSource("sounds/clapping.ogg", "static")
 CARD_HEIGHT = image:getHeight()
 CARD_WIDTH = image:getWidth()
 PILE_Y_OFFSET = CARD_HEIGHT / 4
@@ -76,5 +79,8 @@ return {
   is_one_more = is_one_more,
   get_ace_image = get_ace_image,
   print_centered_text = print_centered_text,
-  cardval_to_number = cardval_to_number
+  cardval_to_number = cardval_to_number,
+  CARD_SOUND = CARD_SOUND,
+  SHUFFLE_SOUND = SHUFFLE_SOUND,
+  END_SOUND = END_SOUND
 }
